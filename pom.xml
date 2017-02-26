@@ -20,9 +20,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/TODO</connection>
-    <developerConnection>scm:git:ssh://github.com:TODO</developerConnection>
-    <url>http://github.com/TODO</url>
+    <connection>scm:git:git://github.com/stackinfo/stackinfo-maven-plugin.git</connection>
+    <developerConnection>scm:git:ssh://github.com:stackinfo/stackinfo-maven-plugin.git</developerConnection>
+    <url>https://github.com/stackinfo/stackinfo-maven-plugin</url>
   </scm>
 
   <developers>
