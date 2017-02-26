@@ -62,7 +62,7 @@ public class PrepareMojo extends AbstractMojo
         MavenXpp3Writer writer = new MavenXpp3Writer();
 
         for (MavenProject project: projects) {
-            Model model = project.getModel();
+            Model model = getMinimalModel(project.getModel());
 
             try {
                 File projectDirectory = model.getProjectDirectory().getCanonicalFile();
@@ -81,6 +81,35 @@ public class PrepareMojo extends AbstractMojo
                 getLog().error(e);
             }
         }
+    }
+
+    private Model getMinimalModel(Model model) {
+
+        Model minModel = new Model();
+
+        // basic info
+        minModel.setGroupId(model.getGroupId());
+        minModel.setArtifactId(model.getArtifactId());
+        minModel.setVersion(model.getVersion());
+        minModel.setPackaging(model.getPackaging());
+
+        minModel.setDescription(model.getDescription());
+        minModel.setName(model.getName());
+        minModel.setParent(model.getParent());
+        minModel.setModelVersion(model.getModelVersion());
+        minModel.setModules(model.getModules());
+
+        // dependencies
+        minModel.setDependencies(model.getDependencies());
+        minModel.setDependencyManagement(model.getDependencyManagement());
+
+        // licenses
+        minModel.setLicenses(model.getLicenses());
+
+        // misc
+        minModel.setPomFile(model.getPomFile());
+
+        return minModel;
     }
 
     private void createOrCleanDirectory(File directory) throws IOException {
